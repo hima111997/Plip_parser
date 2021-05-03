@@ -1,7 +1,7 @@
 # Plip Parser
 A python code to Parse the txt files produced from PLIP webserver
 
-This code can parse the:
+This code was tried with files containing:
 
 1- Hydrophobic Interactions
 
@@ -9,9 +9,11 @@ This code can parse the:
 
 3- Salt bridges
 
-until now.
+and was found to work well with them.
 
-If you have other interactions in your result file and the program could not detect them, raise a new issue.
+Other interactions produced from PLIP was not tried. 
+
+If you have other interactions in your result file and the program could not detect them, raise a new issue and provide the txt file producedfrom PLIP containing the interactions, please.
 
 # Steps:
 
@@ -27,8 +29,8 @@ If you have other interactions in your result file and the program could not det
     
     c- on colab, use this command (!pip install python-docx). (there is an ! mark at the beginning)
     
-4- run the file (python dest_to_py_file)
+4- run the file (python dest_to_py_file).
 
-5- follow the commands
+5- follow the instructions.
 
-6- Thank you
+6- Thank you.
