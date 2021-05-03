@@ -2,9 +2,13 @@
 A python code to Parse the txt files produced from PLIP webserver
 
 This code can parse the:
+
 1- Hydrophobic Interactions
+
 2- H-bonds
+
 3- Salt bridges
+
 until now.
 
 If you have other interactions in your result file and the program could not detect them, raise a new issue.
