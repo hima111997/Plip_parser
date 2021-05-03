@@ -6,17 +6,17 @@
 import os
 import docx
 
-print('THIS PROGRAM PARSES THE TXT FILES PRODUCED FROM PLIP WEBSERVER.\nIT WORKS WITH HYDROPHOBIC INTERACTIONS\nH-BONDS\nSALT BRIDGES (until now).\nIF YOU HAVE OTHER INTERACTIONS IN THE RESULT FILE AND THE PROGRAM DID NOT DETECT THEM, \nCONTACT ME AT MY GITHUB REPO: https://github.com/hima111997/Plip_parser \n')
+print('>>> THIS PROGRAM PARSES THE TXT FILES PRODUCED FROM PLIP WEBSERVER.\nIT WORKS WITH \n1- HYDROPHOBIC INTERACTIONS\n2- H-BONDS\n3- SALT BRIDGES \n(until now).\nIF YOU HAVE OTHER INTERACTIONS IN THE RESULT FILE AND THE PROGRAM DID NOT DETECT THEM, \nCONTACT ME AT MY GITHUB REPO: https://github.com/hima111997/Plip_parser \n\n\n')
 
-pod = int(input('Type 0 for protein-protein interaction \nor 1 for protein-ligand interaction: '))
+pod = int(input('>>> Type 0 for protein-protein interaction \nor 1 for protein-ligand interaction: \n'))
 ### 0: protein - 1: drug
 aa_names = {'ALA':'A', 'ARG':'R', 'ASN':'N', 'ASP':'D', 'CYS':'C', 'GLN':'Q',
            'GLU':'E', 'GLY':'G', 'HIS':'H', 'ILE':'I', 'LEU':'L', 'LYS':'K',
            'MET':'M', 'PHE':'F', 'PRO':'P', 'SER':'S', 'THR':'T', 'TRP':'W',
            'TYR':'Y', 'VAL':'V'}
 #dir_ = r'D:\mds\protein-ligand'
-dir_ = input('Type the destination that \ncontain the folders having the result files: ' )
-table_name = input('Type a name for the output MS table: ' )
+dir_ = input('\n\n>>> Type the destination that \ncontains the folders having the result files: ' )
+table_name = input('\n\n>>> Type a name for the output MS table: ' )
 folders = [(dir_ + '\\' + f , os.listdir(dir_ + '\\' + f)) for f in os.listdir(dir_) if os.path.isdir(dir_ + '\\' + f)]
 
 
@@ -162,6 +162,6 @@ else:
                 row[2 + (2*i)].text = ' - '.join([i[1]+i[0] for i in number])                
  # Now save the document to a location
 doc.save(dir_ + '\\' + '{}.docx'.format(table_name))
-print('You can see the output file at: {}'.format(dir_))
-print('Thank You for using This Program.\n if You have any recommendations or found a problem,\n contact me at my GITHUB repo: \nhttps://github.com/hima111997/Plip_parser \n')
-input('Press any key to close..')
+print('\n\n>>> You can see the output file at: {}'.format(dir_))
+print('\n\n>>> Thank You for using This Program.\n if You have any recommendations or found a problem,\n contact me at my GITHUB repo: \nhttps://github.com/hima111997/Plip_parser \n')
+input('\n\n>>> Press any key to close..')
