@@ -1,4 +1,4 @@
-# Plip Parser
+# PLIP Parser
 A python code to Parse the txt files produced from PLIP webserver
 
 This code was tried with files containing:
