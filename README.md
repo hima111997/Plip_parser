@@ -17,9 +17,9 @@ If you have other interactions in your result file and the program could not det
 
 3- install python-docs (pip install python-docx).
 
-    a- from the cmd on you windows.
+    a- from the cmd on your windows.
     
-    b- from conda command line.
+    b- from conda command line (if you have anaconda installed).
     
     c- on colab, use this command (!pip install python-docx). (there is an ! mark at the beginning)
     
