@@ -17,6 +17,8 @@ If you have other interactions in your result file and the program could not det
 
 # Steps:
 
+from source code:
+
 1- Download the PLIP_parse.py file.
 
 2- Install python 3.7 (if you dont have it), or you can use colab and upload your txt files.
@@ -34,3 +36,12 @@ If you have other interactions in your result file and the program could not det
 5- follow the instructions.
 
 6- Thank you.
+
+from exe file:
+
+1- download the exe file and run it. (NO NEED TO INSTALL PYTHON)
+
+A YouTube video describing how to use it:
+https://youtu.be/RwJkB9O3AFs?list=PLN_sQXLvUWhXjGz2c807ijngl-Hh4kp_g
+
+
