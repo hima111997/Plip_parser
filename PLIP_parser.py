@@ -6,7 +6,7 @@
 import os
 import docx
 
-print('>>> THIS PROGRAM PARSES THE TXT FILES PRODUCED FROM PLIP WEBSERVER.\nIT WORKS WITH \n1- HYDROPHOBIC INTERACTIONS\n2- H-BONDS\n3- SALT BRIDGES \n(until now).\nIF YOU HAVE OTHER INTERACTIONS IN THE RESULT FILE AND THE PROGRAM DID NOT DETECT THEM, \nCONTACT ME AT MY GITHUB REPO: https://github.com/hima111997/Plip_parser \n\n\n')
+print('>>> THIS PROGRAM PARSES THE TXT FILES PRODUCED FROM PLIP WEBSERVER.\nIT WORKS WITH \n1- HYDROPHOBIC INTERACTIONS\n2- H-BONDS\n3- SALT BRIDGES\n4- Pi-stacking\n(until now).\nIF YOU HAVE OTHER INTERACTIONS IN THE RESULT FILE AND THE PROGRAM DID NOT DETECT THEM, \nCONTACT ME AT MY GITHUB REPO: https://github.com/hima111997/Plip_parser \n\n\n')
 
 pod = int(input('>>> Type 0 for protein-protein interaction \nor 1 for protein-ligand interaction: \n'))
 ### 0: protein - 1: drug
