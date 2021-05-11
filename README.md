@@ -9,6 +9,8 @@ This code was tried with files containing:
 
 3- Salt bridges
 
+4- Pi-stacking
+
 and was found to work well with them.
 
 Other interactions produced from PLIP was not tried. 
