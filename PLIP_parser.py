@@ -82,7 +82,7 @@ for txt in new_files:
         type_interactions = data.find('**')
         interactions.append((data.find('**', type_interactions+1)+2 , data[type_interactions+2 : data.find('**', type_interactions+1)]))
         sb=0
-        if 'Salt' in interaction[1]:
+        if 'Salt' in interactions[0]:
             sb = 1
         table = data[interactions[0][0]:]
         type_AA[interactions[0][1]] = parsing(table.strip(), sb=sb, pod=pod)
