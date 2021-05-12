@@ -13,7 +13,7 @@ This code was tried with files containing:
 
 and was found to work well with them.
 
-Other interactions produced from PLIP was not tried. 
+Other interactions produced from PLIP were not tried. 
 
 If you have other interactions in your result file and the program could not detect them, raise a new issue and provide the txt file producedfrom PLIP containing the interactions, please.
 
