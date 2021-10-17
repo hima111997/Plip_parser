@@ -6,17 +6,22 @@
 import os
 import docx
 
-print('>>> THIS PROGRAM PARSES THE TXT FILES PRODUCED FROM PLIP WEBSERVER.\nIT WORKS WITH \n1- HYDROPHOBIC INTERACTIONS\n2- H-BONDS\n3- SALT BRIDGES\n4- Pi-stacking\n(until now).\nIF YOU HAVE OTHER INTERACTIONS IN THE RESULT FILE AND THE PROGRAM DID NOT DETECT THEM, \nCONTACT ME AT MY GITHUB REPO: https://github.com/hima111997/Plip_parser \n\n\n')
+print('>>> THIS PROGRAM PARSES THE TXT FILES PRODUCED FROM PLIP WEBSERVER.\nIT WORKS WITH \n1- HYDROPHOBIC INTERACTIONS\n2- H-BONDS\n3- SALT BRIDGES \n(until now).\nIF YOU HAVE OTHER INTERACTIONS IN THE RESULT FILE AND THE PROGRAM DID NOT DETECT THEM, \nCONTACT ME AT MY GITHUB REPO: https://github.com/hima111997/Plip_parser \n\n\n')
 
-pod = int(input('>>> Type 0 for protein-protein interaction \nor 1 for protein-ligand interaction: \n'))
-### 0: protein - 1: drug
+#dir_ = r'D:\GP\research\11 RC\MDS_results\endo\coco\last_340\740\clustering\plip'
+# table_name = ''
+pod = 1
+
 aa_names = {'ALA':'A', 'ARG':'R', 'ASN':'N', 'ASP':'D', 'CYS':'C', 'GLN':'Q',
            'GLU':'E', 'GLY':'G', 'HIS':'H', 'ILE':'I', 'LEU':'L', 'LYS':'K',
            'MET':'M', 'PHE':'F', 'PRO':'P', 'SER':'S', 'THR':'T', 'TRP':'W',
            'TYR':'Y', 'VAL':'V'}
-#dir_ = r'D:\mds\protein-ligand'
+
+#pod = int(input('>>> Type 0 for protein-protein interaction \nor 1 for protein-ligand interaction: \n'))
+### 0: protein - 1: drug
 dir_ = input('\n\n>>> Type the destination that \ncontains the folders having the result files: ' )
 table_name = input('\n\n>>> Type a name for the output MS table: ' )
+
 folders = [(dir_ + '\\' + f , os.listdir(dir_ + '\\' + f)) for f in os.listdir(dir_) if os.path.isdir(dir_ + '\\' + f)]
 
 
@@ -34,15 +39,16 @@ for d, i in files:
             
             
 # step2: Extracting interacting AA
-def parsing(table, pod, sb = 0):
+def parsing(table, pod, sb = 0, pc = 0):
     AA = []
     lines = table.splitlines()[3::2]
     #print(lines)
+    #print(pc)
     for l in lines:        
         elements = l.split('|')
         
         if pod == 0:
-            if sb == 0:
+            if sb == 0 and pc ==0:
                 AA.append((elements[1].strip(), elements[2].strip(), elements[4].strip(), elements[5].strip()))
             else:
                 #print('Salt Bridges found')
@@ -58,6 +64,7 @@ for txt in new_files:
     with open(txt) as f:
         data = f.read()
     num_interactions = int(data.count('**')/2)
+    #print(num_interactions)
     interactions = []
     if num_interactions > 1:
         start = 0
@@ -65,36 +72,50 @@ for txt in new_files:
             type_interactions = data.find('**', start)        
             interactions.append((data.find('**', type_interactions+1)+2 , data[type_interactions+2 : data.find('**', type_interactions+1)]))
             start = data.find('**', type_interactions+1)+2
-
+        #print(num_interactions, interactions)
         for idx, interaction in enumerate(interactions[:-1]):
             sb=0
+            pc=0
             if 'Salt' in interaction[1]:
                 sb = 1
+            if 'pi-Cation' in interaction[1]:
+                pc = 1
+                #print('pc ',pc)
             table = data[interaction[0]:data.find(interactions[idx+1][1])-2]
             #print(table.strip())
-            type_AA[interaction[1]] = parsing(table.strip(), sb=sb, pod=pod)
+            type_AA[interaction[1]] = parsing(table.strip(), sb=sb, pod=pod, pc=pc)
+            #print(type_AA)
         sb=0
+        pc=0
         if 'Salt' in interactions[-1][1]:
             sb = 1
+        if 'pi-Cation' in interactions[-1][1]:
+            pc = 1
+            #print('pc ',pc)
         table = data[interactions[-1][0]:]
-        type_AA[interactions[-1][1]] = parsing(table.strip(), sb=sb, pod=pod)
-    else:
+        type_AA[interactions[-1][1]] = parsing(table.strip(), sb=sb, pod=pod, pc=pc)
+        #print(file_type_AA)
+    elif num_interactions==1:
         type_interactions = data.find('**')
         interactions.append((data.find('**', type_interactions+1)+2 , data[type_interactions+2 : data.find('**', type_interactions+1)]))
         sb=0
-        if 'Salt' in interactions[0]:
+        pc=0 
+        if 'Salt' in interactions[0][1]:
             sb = 1
+        if 'pi-Cation' in interactions[0][1]:
+            pc = 1
         table = data[interactions[0][0]:]
-        type_AA[interactions[0][1]] = parsing(table.strip(), sb=sb, pod=pod)
+        type_AA[interactions[0][1]] = parsing(table.strip(), sb=sb, pod=pod, pc=pc)
+        
+    else:
+        pass
+
         
     file_type_AA[txt.split('\\')[-2]] = type_AA
     type_AA = {}
 #print(file_type_AA)
 
-
 #step3: create a MS word file containing the table
-
-
   
 rows = len(file_type_AA)
 #columns = max([len(i) for i in file_type_AA.values()])
